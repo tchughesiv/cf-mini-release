@@ -9,3 +9,4 @@ echo 'sed -i "s/${NISE_IP_ADDRESS}/0.0.0.0/g" manifests/deploy.yml' >> /root/cf_
 sed -i "s/.\/scripts\/clone_cf_release.sh/sed -i 's\/\${NISE_IP_ADDRESS}\/0.0.0.0\/g' \/root\/cf_nise_installer\/scripts\/install_cf_release.sh\n.\/scripts\/clone_cf_release.sh/g" /root/cf_nise_installer/scripts/install.sh
 echo ${NISE_IP_ADDRESS} > /root/PRIOR_NISE_IP_ADDRESS
 sed -i '/install_ruby.sh/d' /root/cf_nise_installer/scripts/install.sh
+sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install.sh
