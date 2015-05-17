@@ -8,6 +8,7 @@ ENV HOME /root
 ENV INSTALLER_BRANCH v205
 ENV NISE_DOMAIN cf.mini
 ENV NISE_PASSWORD c1oudc0w
+ENV NISE_IP_ADDRESS 0.0.0.0
 
 ADD cleanup.sh /root/
 ADD dynamic_adds.sh /root/
