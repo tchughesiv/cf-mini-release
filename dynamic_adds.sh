@@ -13,3 +13,4 @@ sed -i '/NISE_IP_ADDRESS=/d' /root/cf_nise_installer/scripts/install_cf_release.
 sed -i '/NISE_IP_ADDRESS=/d' /root/cf_nise_installer/scripts/generate_deploy_manifest.sh
 sed -i '/install_ruby.sh/d' /root/cf_nise_installer/scripts/install.sh
 sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install.sh
+sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install_environemnt.sh
