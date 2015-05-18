@@ -12,4 +12,4 @@ ENV NISE_PASSWORD c1oudc0w
 ADD dynamic_adds.sh /root/
 ADD dynamic_adds_2.sh /root/
 
-RUN curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\ncd \/root\/cf_nise_installer\/nise_bosh\nbundle install/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && rm -rf /var/lib/apt/lists/* && apt-get clean
+RUN curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\ncd \/root\/cf_nise_installer\/nise_bosh\n. ~\/.profile\nbundle install/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && rm -rf /var/lib/apt/lists/* && apt-get clean
