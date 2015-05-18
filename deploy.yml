@@ -26,7 +26,7 @@ jobs:
 
 properties:
   networks:
-    - name: my-network
+    - name: default
       type: vip
   domain: cf.mini
   ssl:
