@@ -1,5 +1,5 @@
 # cf-mini-release
-Docker image with Cloud Foundry installed (not running)
+Docker image with cf-release cloned & Nise BOSH installed
 
 [![](https://badge.imagelayers.io/tchughesiv/cf-mini-release.svg)](https://imagelayers.io/?images=tchughesiv/cf-mini-release:latest 'Get your own badge on imagelayers.io')
 
