@@ -17,9 +17,3 @@ sed -i '/install_ruby.sh/d' /root/cf_nise_installer/scripts/install.sh
 sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install.sh
 sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install_environemnt.sh
 sed -i 's/.\/scripts\/clone_cf_release.sh/.\/scripts\/clone_cf_release.sh\n\/root\/dynamic_adds_2.sh/g' /root/cf_nise_installer/scripts/install.sh
-
-mount -t tmpfs cgroup_root /sys/fs/cgroup
-mkdir -p /sys/fs/cgroup/cpuset
-mkdir -p /sys/fs/cgroup/memory
-mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/
-mount -t cgroup memory -o memory /sys/fs/cgroup/memory/
