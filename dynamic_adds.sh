@@ -6,6 +6,7 @@ sed -i 's/^    hm9000_noop: false/    hm9000_noop: false\n    default_app_memory
 sed -i 's/disk_quota_enabled: true/disk_quota_enabled: false/g' /root/cf_nise_installer/manifests/template.yml
 zone: default
 sed -i 's/zone: default/zone: z1/g' /root/cf_nise_installer/manifests/template.yml
+sed -i '/- admin/ s/$/,uaa.admin,password.write/' /root/cf_nise_installer/manifests/template.yml
 sed -i 's/debug2/info/g' /root/cf_nise_installer/manifests/template.yml
 
 #???? remove these zone changes ????
