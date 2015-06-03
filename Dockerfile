@@ -13,4 +13,4 @@ ADD dynamic_adds.sh /root/
 ADD dynamic_adds_2.sh /root/
 ADD cleanup.sh /root/
 
-RUN curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\n\/root\/cleanup.sh/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && apt-get -y remove --purge apparmor
+RUN apt-get update && curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\n\/root\/cleanup.sh/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && apt-get -y remove --purge apparmor
