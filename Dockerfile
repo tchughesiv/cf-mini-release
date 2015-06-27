@@ -8,6 +8,7 @@ ENV HOME /root
 ENV INSTALLER_BRANCH v205
 ENV NISE_DOMAIN cf-mini.example
 ENV NISE_PASSWORD c1oudc0w
+RUN echo Etc/UTC > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
 ADD dynamic_adds.sh /root/
 ADD dynamic_adds_2.sh /root/
