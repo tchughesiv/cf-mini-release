@@ -1,6 +1,6 @@
 # Cloud Foundry release
-# version 0.1
-FROM tchughesiv/cf-mini-base:v205
+# version 0.2
+FROM tchughesiv/cf-mini-base:v215
 MAINTAINER Tommy Hughes <tchughesiv@gmail.com>
 
 WORKDIR /root
@@ -11,7 +11,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN echo Etc/UTC > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
-ENV INSTALLER_BRANCH v205
+ENV INSTALLER_BRANCH v215
 ENV NISE_DOMAIN cf-mini.example
 ENV NISE_PASSWORD c1oudc0w
 
