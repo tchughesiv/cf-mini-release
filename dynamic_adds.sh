@@ -8,6 +8,7 @@ sed -i 's/zone: default/zone: z1/g' /root/cf_nise_installer/manifests/template.y
 sed -i '/- admin/ s/$/,uaa.admin,password.write/' /root/cf_nise_installer/manifests/template.yml
 sed -i 's/debug2/info/g' /root/cf_nise_installer/manifests/template.yml
 sed -i '/consul_agent/d' /root/cf_nise_installer/manifests/template.yml
+sed -i '/consul_agent/d' /root/cf_nise_installer/cf-release/jobs/haproxy/monit
 sed -i '/cc: \&cc/a \    droplets:\n      droplet_directory_key: cc-droplets\n    buildpacks:\n      buildpack_directory_key: cc-buildpacks' /root/cf_nise_installer/manifests/template.yml
 
 #???? remove these zone changes ????
