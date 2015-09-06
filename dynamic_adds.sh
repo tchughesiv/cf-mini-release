@@ -14,3 +14,4 @@ sed -i '/install_ruby.sh/d' /root/cf_nise_installer/scripts/install.sh
 sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install.sh
 sed -i '/apt-get update/d' /root/cf_nise_installer/scripts/install_environemnt.sh
 sed -i 's/.\/scripts\/clone_cf_release.sh/.\/scripts\/clone_cf_release.sh\n\/root\/dynamic_adds_2.sh/g' /root/cf_nise_installer/scripts/install.sh
+sed -i 's/com\/yudai\/cf_nise_installer/com\/tchughesiv\/cf_nise_installer/g' /root/cf_nise_installer/scripts/bootstrap.sh
