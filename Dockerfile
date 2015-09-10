@@ -1,5 +1,5 @@
 # Cloud Foundry release
-# version 0.2
+# version 0.3
 FROM tchughesiv/cf-mini-base:v215
 MAINTAINER Tommy Hughes <tchughesiv@gmail.com>
 
@@ -19,4 +19,7 @@ ADD dynamic_adds.sh /root/
 ADD dynamic_adds_2.sh /root/
 ADD cleanup.sh /root/
 
-RUN apt-get update && curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\n\/root\/cleanup.sh/g' ./bootstrap.sh && sed -i 's/com\/yudai\/cf_nise_installer/com\/tchughesiv\/cf_nise_installer/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && apt-get -y remove --purge apparmor
+RUN apt-get update && curl -s -k -B https://raw.githubusercontent.com/tchughesiv/cf_nise_installer/${INSTALLER_BRANCH}/scripts/bootstrap.sh > /root/bootstrap.sh && chmod u+x /root/*.sh && sed -i 's/.\/scripts\/install.sh/\/root\/dynamic_adds.sh\n.\/scripts\/install.sh\n\/root\/cleanup.sh/g' ./bootstrap.sh && sed -i 's/com\/yudai\/cf_nise_installer/com\/tchughesiv\/cf_nise_installer/g' ./bootstrap.sh && ./bootstrap.sh && rm /root/*.sh && apt-get -y remove --purge apparmor && sed -i '/bundle install/d' /root/cf_nise_installer/scripts/install_cf_release.sh && wget -O /root/cf-cli_amd64.deb "https://cli.run.pivotal.io/stable?release=debian64&version=6.12.3&source=github-rel cf-cli_amd64.deb" && dpkg -i /root/cf-cli_amd64.deb && rm /root/cf-cli_amd64.deb && mkdir /root/cf_nise_installer/test_apps && mkdir /root/cf_nise_installer/test_apps/spring-music && mkdir /root/cf_nise_installer/test_apps/cf-env && mkdir /root/cf_nise_installer/test_apps/test_app && rm -rf /root/cf_nise_installer/test_app && rm -f /etc/supervisor/conf.d/supervisord.conf
+
+WORKDIR /var/vcap/packages/cloud_controller_ng/cloud_controller_ng/
+RUN find . -type f -name "Gemfile*" | xargs sed -i '/pg/ s/0.16.0/0.17.1/g' && find . -type f -name "Gemfile*" | xargs sed -i '/eventmachine/ s/1.0.3/1.0.4/g' && find . -type f -name "Gemfile*" | xargs sed -i '/delayed_job/ s/4.0.4/4.0.6/g' && /var/vcap/packages/ruby-2.1.6/bin/bundle install && /var/vcap/packages/ruby-2.1.6/bin/bundle clean
