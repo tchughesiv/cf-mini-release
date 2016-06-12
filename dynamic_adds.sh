@@ -4,7 +4,7 @@ echo ${NISE_IP_ADDRESS} > /root/PRIOR_NISE_IP_ADDRESS
 sed -i 's/buildpack_java/buildpack_java_offline\n      - name: staticfile_buildpack\n        package: buildpack_staticfile\n      - name: binary_buildpack\n        package: buildpack_binary/g' /root/cf_nise_installer/manifests/template.yml
 sed -i 's/^    hm9000_noop: false/    hm9000_noop: false\n    default_app_memory: 512\n    default_app_disk_in_mb: 512/g' /root/cf_nise_installer/manifests/template.yml
 # sed -i 's/disk_quota_enabled: true/disk_quota_enabled: false/g' /root/cf_nise_installer/manifests/template.yml
-sed -i 's/zone: default/zone: z1/g' /root/cf_nise_installer/manifests/template.yml
+# sed -i 's/zone: default/zone: z1/g' /root/cf_nise_installer/manifests/template.yml
 sed -i 's/debug2/info/g' /root/cf_nise_installer/manifests/template.yml
 # sed -i '/consul_agent/d' /root/cf_nise_installer/manifests/template.yml
 # sed -i '/cc: \&cc/a \    droplets:\n      droplet_directory_key: cc-droplets\n    buildpacks:\n      buildpack_directory_key: cc-buildpacks\n    allow_app_ssh_access: false' /root/cf_nise_installer/manifests/template.yml
