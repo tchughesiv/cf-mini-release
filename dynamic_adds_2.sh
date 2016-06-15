@@ -13,6 +13,7 @@ echo "2.3.0" > .ruby-version
 gem install bundler bosh_cli --no-ri --no-rdoc
 
 grep -lr "DNS: 53" ./src/consul-release/ | xargs sed -i 's/DNS: 53,/DNS: 8600,/g'
+grep -lr '"dns": 53' ./src/consul-release/ | xargs sed -i 's/"dns": 53/"dns": 8600/g'
 cp -p config/final.yml ./final.yml.old
 bosh sync blobs
 
