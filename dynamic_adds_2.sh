@@ -1,17 +1,16 @@
-#! /bin/sh
-# export INSTALLER_BRANCH=v237 ; export NISE_DOMAIN=cf-mini.example ; export NISE_PASSWORD=c1oudc0w ; source ~/.profile
+#!/bin/bash -ex
 sed -i '/apt-get update/d' /root/cf_nise_installer/nise_bosh/bin/init
 sed -i '/exit 1/d' /root/cf_nise_installer/nise_bosh/bin/init
 
 # change consul port to 8600 & recreate cf release
-# cd /root/cf_nise_installer/cf-release
-# ./scripts/update
-# grep -lr "DNS: 53" ./src/consul-release/ | xargs sed -i 's/DNS: 53,/DNS: 8600,/g'
-# cp -p config/final.yml config/final.yml.old
-
+cd /root/cf_nise_installer/cf-release
 rbenv install 2.3.0
 echo "2.3.0" > .ruby-version
 gem install bundler bosh_cli --no-ri --no-rdoc
+
+# ./scripts/update
+# grep -lr "DNS: 53" ./src/consul-release/ | xargs sed -i 's/DNS: 53,/DNS: 8600,/g'
+# cp -p config/final.yml config/final.yml.old
 # bosh sync blobs
 
 # echo "---
@@ -68,7 +67,7 @@ blobstore:
 
 mv releases/consul/consul-80.yml releases/consul/consul-80.yml.old
 mv releases/consul/index.yml releases/consul/index.yml.old
-rm -rf .final_builds
 # source ~/.profile
+# rm -rf .final_builds
 # echo yes | bosh create release --name consul --version 80 --final --force
 # rbenv uninstall 2.3.0
