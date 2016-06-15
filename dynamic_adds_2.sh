@@ -3,6 +3,11 @@
 sed -i '/apt-get update/d' /root/cf_nise_installer/nise_bosh/bin/init
 sed -i '/exit 1/d' /root/cf_nise_installer/nise_bosh/bin/init
 
+##!!! DEVELOPMENT ONLY
+sed -i 's/.\/scripts\/install_environemnt.sh/#.\/scripts\/install_environemnt.sh/g' /root/cf_nise_installer/scripts/install.sh
+sed -i 's/.\/scripts\/install_cf_release.sh/#.\/scripts\/install_cf_release.sh/g' /root/cf_nise_installer/scripts/install.sh
+##!!!!!!
+
 # change consul port to 8600 & recreate cf release
 cd /root/cf_nise_installer/cf-release
 ./scripts/update
@@ -13,7 +18,6 @@ rbenv install 2.3.0
 echo "2.3.0" > .ruby-version
 gem install bundler bosh_cli --no-ri --no-rdoc
 bosh sync blobs
-rm -rf .final_builds
 
 echo "---
 final_name: cf
@@ -32,11 +36,11 @@ blobstore:
 cf_version=`echo ${INSTALLER_BRANCH} | sed 's/^v//' | sed 's/^V//'`
 mv releases/cf-${cf_version}.yml releases/cf-${cf_version}.yml.old
 mv releases/index.yml releases/index.yml.old
-# tac releases/index.yml.old | sed "/version: '${cf_version}'/{N;d;}" | tac > releases/index.yml
-# bosh init release cf
-# echo yes | bosh create release --name cf --version ${cf_version} --force
-# mv dev_releases/cf/* dev_releases/
-# rm -rf dev_releases/cf
-# cd dev_releases/ ; ln -fs . cf ; cd ..
-echo yes | bosh create release --name cf --version ${cf_version} --final --force
-# du -sh /root/cf_nise_installer/cf-release/src
+
+#### bosh init release cf
+#### echo yes | bosh create release --name cf --version ${cf_version} --force
+
+# rm -rf .final_builds
+# echo yes | bosh create release --name cf --version ${cf_version} --final --force
+
+# rm -rf /root/cf_nise_installer/cf-release/src/*
