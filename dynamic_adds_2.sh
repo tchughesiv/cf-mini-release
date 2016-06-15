@@ -3,11 +3,6 @@
 sed -i '/apt-get update/d' /root/cf_nise_installer/nise_bosh/bin/init
 sed -i '/exit 1/d' /root/cf_nise_installer/nise_bosh/bin/init
 
-##!!! DEVELOPMENT ONLY
-# sed -i 's/.\/scripts\/install_environemnt.sh/#.\/scripts\/install_environemnt.sh/g' /root/cf_nise_installer/scripts/install.sh
-sed -i 's/.\/scripts\/install_cf_release.sh/#.\/scripts\/install_cf_release.sh/g' /root/cf_nise_installer/scripts/install.sh
-##!!!!!!
-
 # change consul port to 8600 & recreate cf release
 cd /root/cf_nise_installer/cf-release
 ./scripts/update
