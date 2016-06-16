@@ -36,4 +36,13 @@ mv releases/cf-${cf_version}.yml ./cf-${cf_version}.yml.old
 mv releases/index.yml ./index.yml.old
 rm -rf .final_builds
 echo yes | bosh create release --name cf --version ${cf_version} --final --force
+
+# Diego installation
+cd /root/cf_nise_installer
+git clone https://github.com/cloudfoundry-incubator/diego-release.git -b v0.1472.0
+cd /root/cf_nise_installer/diego-release
+./scripts/update
+echo "2.3.0" > .ruby-version
+./scripts/generate-deployment-manifest -c /root/cf_nise_installer/manifests/template.yml -i manifest-generation/bosh-lite-stubs/iaas-settings.yml -p manifest-generation/bosh-lite-stubs/property-overrides.yml > ./new.yml
+
 echo y | rbenv uninstall 2.3.0
